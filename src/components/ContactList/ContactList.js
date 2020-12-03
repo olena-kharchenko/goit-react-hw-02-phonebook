@@ -1,11 +1,14 @@
 // imort s from './ContactList.module.css';
 
-function ContactList({ contacts }) {
+function ContactList({ contacts, onDeleteContact }) {
   return (
     <ul>
-      {contacts.map(contact => (
-        <li key={contact.id}>
-          {contact.name}: {contact.number}
+      {contacts.map(({ id, name, number }) => (
+        <li key={id}>
+          {name}: {number}
+          <button type="button" onClick={() => onDeleteContact(id)}>
+            Удалить
+          </button>
         </li>
       ))}
     </ul>
