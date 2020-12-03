@@ -7,13 +7,13 @@ import ContactList from './components/ContactList';
 class App extends Component {
   state = {
     contacts: [],
-    name: '',
   };
 
-  addContact = name => {
+  addContact = (name, number) => {
     const contact = {
       id: shortid.generate(),
       name,
+      number,
     };
 
     this.setState(({ contacts }) => ({
