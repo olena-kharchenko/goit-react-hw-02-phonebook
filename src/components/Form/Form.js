@@ -1,10 +1,22 @@
-// imort s from './Form.module.css';
 import { Component } from 'react';
+import PropTypes from 'prop-types';
+import s from './Form.module.css';
 
 class Form extends Component {
   state = {
     name: '',
     number: '',
+  };
+
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    contacts: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        number: PropTypes.string.isRequired,
+      }),
+    ),
   };
 
   handleChange = e => {
@@ -51,8 +63,8 @@ class Form extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
+      <form onSubmit={this.handleSubmit} className={s.form}>
+        <label className={s.label}>
           Name
           <input
             type="text"
@@ -60,10 +72,11 @@ class Form extends Component {
             value={this.state.name}
             placeholder="Rosie Simpson"
             onChange={this.handleChange}
+            className={s.input}
           />
         </label>
 
-        <label>
+        <label className={s.label}>
           Number
           <input
             type="tel"
@@ -72,9 +85,12 @@ class Form extends Component {
             placeholder="459-12-56"
             // pattern="\+3\s?[\(]{0,1}9[0-9]{2}[\)]{0,1}\s?\d{3}[-]{0,1}\d{2}[-]{0,1}\d{2}"
             onChange={this.handleChange}
+            className={s.input}
           />
         </label>
-        <button type="submit">Add contact</button>
+        <button type="submit" className={s.button}>
+          Add contact
+        </button>
       </form>
     );
   }
